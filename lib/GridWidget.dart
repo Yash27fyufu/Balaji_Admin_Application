@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'globalvar.dart';
 import 'mainpage.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'updateData.dart';
 import 'package:flutter/material.dart';
 
@@ -105,6 +106,22 @@ class GridWidget extends StatelessWidget {
                                     ),
                                     RawMaterialButton(
                                         onPressed: () {
+                                          vehicleStream = database
+                                              .child(pathxy)
+                                              .once()
+                                              .then((event) {
+                                            dynamic data = event.snapshot.value;
+
+                                            pdfurl =
+                                                data["pdf"] ? data["pdf"] : "";
+                                          });
+
+                                          if (pdfurl != "") {
+                                            pdfurl = FirebaseStorage.instance
+                                                .refFromURL(pdfurl)
+                                                .delete();
+                                          }
+
                                           database
                                               .child(pathxy)
                                               .child(text[idx])
