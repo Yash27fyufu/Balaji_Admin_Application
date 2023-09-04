@@ -55,6 +55,7 @@ dependencies:
   shared_preferences: ^2.0.20
   syncfusion_flutter_pdfviewer: ^21.1.41
   pdf: ^3.8.4
+  change_app_package_name: ^1.1.0
  
 dev_dependencies:
   flutter_test:
